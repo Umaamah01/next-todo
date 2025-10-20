@@ -1,12 +1,13 @@
 import { fetchTodos, Todo } from "@/lib/api"
 import TodoActions from "./TodoActions"
+import Link from "next/link"
 
 interface TodoPageProps {
-  params: Promise<{ id: string }>   // ✅ Make params a Promise
+  params: { id: string }   // ✅ Make params a Promise
 }
 
 export default async function TodoDetailsPage({ params }: TodoPageProps) {
-  const { id } = await params        // ✅ Await params here
+  const { id } = params        // ✅ Await params here
 
   const todos = await fetchTodos()
   const todo = todos.find((t) => t.id === Number(id))
@@ -48,12 +49,12 @@ export default async function TodoDetailsPage({ params }: TodoPageProps) {
       </div>
 
       <div className="text-center mt-6">
-        <a
+        <Link
           href="/todos"
           className="inline-block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
         >
           Back to Todos
-        </a>
+        </Link>
       </div>
     </main>
   )
