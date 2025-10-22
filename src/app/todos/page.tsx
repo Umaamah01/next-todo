@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Link from "next/link"
-import { fetchTodos, createTodo, updateTodoStatus, Todo } from "@/lib/api"
+import {createTodo, updateTodoStatus, Todo } from "@/lib/api"
 import { Search } from "lucide-react"
 
 export default function TodosPage() {
@@ -27,7 +27,7 @@ export default function TodosPage() {
       setHasNextPage(response.meta?.hasNextPage || false)
 
       setTodos(
-        tasks.map((task: Record<string, any>) => ({
+        tasks.map((task: Record<string, unknown>) => ({
           id: task.id,
           title: task.title || task.name,
           completed: task.completed ?? false,
@@ -44,6 +44,7 @@ export default function TodosPage() {
 
   useEffect(() => {
     loadTodos()
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage])
 
   // 🔥 Handle new todo submission

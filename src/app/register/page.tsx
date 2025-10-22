@@ -30,8 +30,8 @@ export default function RegisterPage() {
       setEmail("")
       setPassword("")
       setTimeout(() => router.push("/login"), 1500);
-    } catch (err: any) {
-      setError(err.message || "Registration failed")
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Registration failed")
     } finally {
       setLoading(false)
     }

@@ -1,4 +1,4 @@
-import { fetchTodos, Todo } from "@/lib/api"
+import { fetchTodos,} from "@/lib/api"
 import TodoActions from "./TodoActions"
 import Link from "next/link"
 

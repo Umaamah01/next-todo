@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 
 export default function LoginPage() {
   const router = useRouter()
@@ -38,8 +39,8 @@ export default function LoginPage() {
 
       // Redirect to todos page
       router.push("/todos")
-    } catch (err: any) {
-      setError(err.message || "Something went wrong")
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Something went wrong")
     } finally {
       setLoading(false)
     }
@@ -94,9 +95,9 @@ export default function LoginPage() {
         {/* Register Link */}
         <p className="text-center text-gray-600 mt-4">
           Don&apos;t have an account?{" "}
-          <a href="/register" className="text-green-600 hover:underline">
+          <Link href="/register" className="text-green-600 hover:underline">
             Register
-          </a>
+          </Link>
         </p>
       </div>
     </main>
