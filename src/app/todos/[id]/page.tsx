@@ -1,16 +1,16 @@
-import { fetchTodos } from "@/lib/api"
+import { fetchTodos, Todo } from "@/lib/api"
 import TodoActions from "./TodoActions"
 import Link from "next/link"
 
 interface TodoPageProps {
-  params: { id: string }  // ✅ params is a plain object
+  params: Promise<{ id: string }>  // ✅ params is a plain object
 }
 
 export default async function TodoDetailsPage({ params }: TodoPageProps) {
-  const { id } = params   // ✅ no await needed
+  const { id } = await params   // ✅ no await needed
 
   const todos = await fetchTodos()
-  const todo = todos.find((t) => t.id === Number(id))
+  const todo = todos.find((t: Todo) => t.id === Number(id))
 
   if (!todo) {
     return (
